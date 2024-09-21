@@ -40,6 +40,29 @@ class BinaryTree {
     let removeDupe = [...new Set(sortedArr)];
     return removeDupe;
   }
+  insert(value) {
+    let node = this.root;
+    function compare(root, value) {
+      if (root.value === value) {
+        return false;
+      }
+      if (value < root.value) {
+        if (!root.left) {
+          root.left = new BinaryTreeNode(value);
+        } else {
+          compare(root.left, value);
+        }
+      }
+      if (value > root.value) {
+        if (!root.right) {
+          root.right = new BinaryTreeNode(value);
+        } else {
+          compare(root.right, value);
+        }
+      }
+    }
+    compare(node, value);
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -55,6 +78,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-testArr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+testArr = [7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
 test = new BinaryTree(testArr);

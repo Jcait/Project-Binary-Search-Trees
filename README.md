@@ -119,3 +119,46 @@ Building it with the code above and using the `prettyprint()` function provided 
         │   ┌── 3
         └── 1
 ```
+
+###Insert
+Again we start with the basics of what the function has to achieve
+
+```js
+insert(value) {
+    if (value > this.root.value) {
+      this.root.right = new BinaryTreeNode(value);
+    } else if (value < this.root.value) {
+      this.root.left = new BinaryTreeNode(value);
+    } else {
+      return false;
+    }
+  }
+```
+
+After figuring out the main goal, we create another recusive function to achieve it
+
+```js
+  insert(value) {
+    let node = this.root;
+    function compare(root, value) {
+      if (root.value === value) {
+        return false;
+      }
+      if (value < root.value) {
+        if (!root.left) {
+          root.left = new BinaryTreeNode(value);
+        } else {
+          compare(root.left, value);
+        }
+      }
+      if (value > root.value) {
+        if (!root.right) {
+          root.right = new BinaryTreeNode(value);
+        } else {
+          compare(root.right, value);
+        }
+      }
+    }
+    compare(node, value);
+  }
+```
