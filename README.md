@@ -63,3 +63,59 @@ let end = newArr.length - 1;
 let mid = Math.floor((start + end) / 2);
 return new BinaryTreeNode();
 ```
+
+Since I want it to be recusive it was time to build the next function inside the `buildTree()`
+
+```js
+function setValue(arr, start, end) {
+  // Case to end the recursion
+  if (start > end) {
+    return null;
+  }
+  let mid = Math.floor((start + end) / 2);
+  let root = new BinaryTreeNode(newArr[mid]);
+  return root;
+}
+```
+
+This splits the array up and adds the middle of it to the root of the current node,we can set the left and right nodes to the function with adjusting the start and end parameters for the right and left nodes repseticvely
+
+```js
+  buildTree(arr) {
+    let newArr = this.cleanArr(arr);
+    // function exists so it can be called recursively
+    let start = 0;
+    let end = newArr.length - 1;
+    console.log(newArr);
+
+    function setValue(arr, start, end) {
+        // Case to end the recursion
+      if (start > end) {
+        return null;
+      }
+      let mid = Math.floor((start + end) / 2);
+      let root = new BinaryTreeNode(newArr[mid]);
+
+      root.left = setValue(arr, start, mid - 1);
+      root.right = setValue(arr, mid + 1, end);
+      return root;
+    }
+    return setValue(newArr, start, end);
+  }
+```
+
+Building it with the code above and using the `prettyprint()` function provided The Odin Project, the Tree comes out as below
+
+```
+           ┌── 6345
+ │       ┌── 324
+ │   ┌── 67
+ │   │   │   ┌── 23
+ │   │   └── 9
+ └── 8
+     │       ┌── 7
+     │   ┌── 5
+     └── 4
+        │   ┌── 3
+        └── 1
+```

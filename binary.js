@@ -19,12 +19,12 @@ class BinaryTree {
     console.log(newArr);
 
     function setValue(arr, start, end) {
+      // Case to end the recursion
       if (start > end) {
         return null;
       }
       let mid = Math.floor((start + end) / 2);
       let root = new BinaryTreeNode(newArr[mid]);
-      console.log(root);
 
       root.left = setValue(arr, start, mid - 1);
       root.right = setValue(arr, mid + 1, end);
