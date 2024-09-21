@@ -37,3 +37,29 @@ class BinaryTree {
   }
 }
 ```
+
+### Build Tree
+
+First steps to this function was to "clean" the array to speak, removing duplicates and sorting it numerically
+
+```js
+ cleanArr(arr) {
+    let sortedArr = arr.sort(function (a, b) {
+      return a - b;
+    });
+    let removeDupe = [...new Set(sortedArr)];
+    return removeDupe;
+  }
+```
+
+Afterwards I looked into building the function, the goal was to have do it recursivly,
+
+first was the initial steps of the function
+
+```js
+let newArr = this.cleanArr(arr);
+let start = 0;
+let end = newArr.length - 1;
+let mid = Math.floor((start + end) / 2);
+return new BinaryTreeNode();
+```
