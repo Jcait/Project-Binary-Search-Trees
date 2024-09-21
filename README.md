@@ -2,11 +2,11 @@
 
 ## Assignment
 
-The Assignment is to create a balanced Binary Search Tree in Javascript. THe full brief can be viewed [here](https://www.theodinproject.com/lessons/javascript-binary-search-trees)] at the Odin Project Website
+The assignment is to create a balanced Binary Search Tree in Javascript. The full brief can be viewed [here](https://www.theodinproject.com/lessons/javascript-binary-search-trees). at the Odin Project Website
 
 ### First Step Node Class
 
-First step is to create the Binary Tree Node class
+The first step is to create the Binary Tree Node class.
 
 ```js
 class BinaryTreeNode {
@@ -20,7 +20,7 @@ class BinaryTreeNode {
 
 ### Binary Tree Class
 
-Afterwards as the brief outlines, create the Binary tree class
+As the brief outlines, create the Binary tree class.
 
 ```js
 class BinaryTreeNode {
@@ -40,7 +40,7 @@ class BinaryTree {
 
 ### Build Tree
 
-First steps to this function was to "clean" the array to speak, removing duplicates and sorting it numerically
+The first step to this function was to "clean" the array to speak, removing duplicates and sorting it numerically.
 
 ```js
  cleanArr(arr) {
@@ -52,9 +52,9 @@ First steps to this function was to "clean" the array to speak, removing duplica
   }
 ```
 
-Afterwards I looked into building the function, the goal was to have do it recursivly,
+Since the project is about Binary Search on an array, the goal was to create a recursive function to build the tree.
 
-first was the initial steps of the function
+First were the initial steps of the function.
 
 ```js
 let newArr = this.cleanArr(arr);
@@ -64,7 +64,7 @@ let mid = Math.floor((start + end) / 2);
 return new BinaryTreeNode();
 ```
 
-Since I want it to be recusive it was time to build the next function inside the `buildTree()`
+Since I want it to be recusive, it was time to build the next function inside the `buildTree()`
 
 ```js
 function setValue(arr, start, end) {
@@ -78,7 +78,7 @@ function setValue(arr, start, end) {
 }
 ```
 
-This splits the array up and adds the middle of it to the root of the current node,we can set the left and right nodes to the function with adjusting the start and end parameters for the right and left nodes repseticvely
+This splits the array up and adds the middle of it to the root of the current node. We can set the left and right nodes to the function by adjusting the start and end parameters for the right and left nodes accordingly.
 
 ```js
   buildTree(arr) {
@@ -104,7 +104,7 @@ This splits the array up and adds the middle of it to the root of the current no
   }
 ```
 
-Building it with the code above and using the `prettyprint()` function provided The Odin Project, the Tree comes out as below
+Building it with the code above and using the `prettyprint()` function provided by the Odin Project, the tree comes out as below.
 
 ```
            ┌── 6345
