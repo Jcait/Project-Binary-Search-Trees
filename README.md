@@ -240,7 +240,7 @@ The insert function was also cleaned up a tad
   }
 ```
 
-Working on the Binary Search Tree has been great in understanding how recursive functions work, as well as creating `find(value)` I also went back and reformatted the `builTree(arr)` function
+Working on the Binary Search Tree has been great in understanding how recursive functions work, as well as creating `find(value)` I also went back and reformatted the `buildTree(arr)` function
 
 ```js
   buildTree(arr) {

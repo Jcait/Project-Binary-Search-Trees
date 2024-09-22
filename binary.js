@@ -117,6 +117,18 @@ class BinaryTree {
       return "Value not Found";
     }
   }
+
+  levelOrder(callback) {
+    let queue = [];
+    queue.push(this.root, this.root);
+    return queue;
+  }
+
+  printNode(node) {
+    node.forEach((x) => {
+      return x;
+    });
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
