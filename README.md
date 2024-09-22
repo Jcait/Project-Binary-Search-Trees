@@ -239,3 +239,43 @@ The insert function was also cleaned up a tad
     }
   }
 ```
+
+Working on the Binary Search Tree has been great in understanding how recursive functions work, as well as creating `find(value)` I also went back and reformatted the `builTree(arr)` function
+
+```js
+  buildTree(arr) {
+    let newArr = this.cleanArr(arr);
+    return this.setValue(newArr, 0, newArr.length - 1);
+  }
+  setValue(arr, start, end) {
+    // Case to end the recursion
+    if (start > end) {
+      return null;
+    }
+    let mid = Math.floor((start + end) / 2);
+    let root = new BinaryTreeNode(arr[mid]);
+
+    root.left = this.setValue(arr, start, mid - 1);
+    root.right = this.setValue(arr, mid + 1, end);
+    return root;
+  }
+
+  find(value) {
+    return this.match(this.root, value);
+  }
+
+  match(root, value) {
+    if (!root) {
+      return "Value not Found";
+    }
+    if (root.value === value) {
+      return root;
+    } else if (root.value > value) {
+      return this.match(root.left, value);
+    } else if (root.value < value) {
+      return this.match(root.right, value);
+    } else {
+      return "Value not Found";
+    }
+  }
+```

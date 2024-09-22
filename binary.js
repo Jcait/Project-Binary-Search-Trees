@@ -13,24 +13,19 @@ class BinaryTree {
 
   buildTree(arr) {
     let newArr = this.cleanArr(arr);
-    // function exists so it can be called recursively
-    let start = 0;
-    let end = newArr.length - 1;
-    console.log(newArr);
-
-    function setValue(arr, start, end) {
-      // Case to end the recursion
-      if (start > end) {
-        return null;
-      }
-      let mid = Math.floor((start + end) / 2);
-      let root = new BinaryTreeNode(newArr[mid]);
-
-      root.left = setValue(arr, start, mid - 1);
-      root.right = setValue(arr, mid + 1, end);
-      return root;
+    return this.setValue(newArr, 0, newArr.length - 1);
+  }
+  setValue(arr, start, end) {
+    // Case to end the recursion
+    if (start > end) {
+      return null;
     }
-    return setValue(newArr, start, end);
+    let mid = Math.floor((start + end) / 2);
+    let root = new BinaryTreeNode(arr[mid]);
+
+    root.left = this.setValue(arr, start, mid - 1);
+    root.right = this.setValue(arr, mid + 1, end);
+    return root;
   }
 
   cleanArr(arr) {
@@ -103,6 +98,24 @@ class BinaryTree {
       current = current.left;
     }
     return current;
+  }
+  find(value) {
+    return this.match(this.root, value);
+  }
+
+  match(root, value) {
+    if (!root) {
+      return "Value not Found";
+    }
+    if (root.value === value) {
+      return root;
+    } else if (root.value > value) {
+      return this.match(root.left, value);
+    } else if (root.value < value) {
+      return this.match(root.right, value);
+    } else {
+      return "Value not Found";
+    }
   }
 }
 
