@@ -162,3 +162,80 @@ After figuring out the main goal, we create another recusive function to achieve
     compare(node, value);
   }
 ```
+
+### Node Deletion
+
+This function was a massive lesson in recursion, ultimately using a recursvie function to set the parent nodes Left or Right pointers dependant on the value, and starting a second delete loop if the node had 2 children after finding the successor
+
+```js
+  deleteItem(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+
+  deleteNode(root, value) {
+    if (root === null) {
+      return null;
+    }
+    if (root.value > value) {
+      root.left = this.deleteNode(root.left, value);
+      return root;
+    } else if (root.value < value) {
+      root.right = this.deleteNode(root.right, value);
+      return root;
+    } else {
+      if (!root.right && !root.left) {
+        return null;
+      } else if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      } else {
+        let tempValue = this.findMin(root.right);
+        root.value = tempValue.value;
+
+        root.right = this.deleteNode(root.right, tempValue.value);
+        return root;
+      }
+    }
+  }
+
+  findMin(current) {
+    while (current.left) {
+      current = current.left;
+    }
+    return current;
+  }
+
+```
+
+The insert function was also cleaned up a tad
+
+```js
+  insert(value) {
+    this.root = this.insertNode(this.root, value);
+  }
+
+  insertNode(root, value) {
+    if (root.value === value) {
+      return false;
+    }
+    if (value < root.value) {
+      if (!root.left) {
+        root.left = new BinaryTreeNode(value);
+        return root;
+      } else {
+        this.insertNode(root.left, value);
+        return root;
+      }
+    }
+    if (value > root.value) {
+      if (!root.right) {
+        root.right = new BinaryTreeNode(value);
+        return root;
+      } else {
+        this.insertNode(root.right, value);
+        return root;
+      }
+    }
+  }
+```
