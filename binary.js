@@ -191,6 +191,18 @@ class BinaryTree {
     callback(node);
   }
 
+  height(node) {
+    return this.findHeight(node);
+  }
+
+  findHeight(node) {
+    if (node === null) {
+      return 0;
+    }
+    const lDeph = this.findHeight(node.left);
+    const rDeph = this.findHeight(node.right);
+    return Math.max(lDeph, rDeph) + 1;
+  }
   printNode(node) {
     console.log(node);
   }
@@ -212,3 +224,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 testArr = [7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 30, 34, 32, 31];
 
 test = new BinaryTree(testArr);
+test.height(test.root);

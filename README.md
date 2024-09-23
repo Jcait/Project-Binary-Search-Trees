@@ -362,3 +362,20 @@ The next 3 functions for deph traversal were easy to figure out, considering I'd
     callback(node);
   }
 ```
+
+Find Height is another recusive function that goes as low as it can in a tree then counts back from there, comparing with the other branch, which ever number is higher is carried from there.
+
+```js
+  height(node) {
+    return this.findHeight(node);
+  }
+
+  findHeight(node) {
+    if (node === null) {
+      return 0;
+    }
+    const lDeph = this.findHeight(node.left);
+    const rDeph = this.findHeight(node.right);
+    return Math.max(lDeph, rDeph) + 1;
+  }
+```
