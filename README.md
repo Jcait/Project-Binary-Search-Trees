@@ -309,3 +309,56 @@ This involved assigning the items to an array as a first in, first out, since we
     }
   }
 ```
+
+The next 3 functions for deph traversal were easy to figure out, considering I'd come across them via some Level Order Traversal builds
+
+```js
+  inOrderTraversal(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("PLease enter a function");
+    }
+    this.inOrder(callback, this.root);
+  }
+
+  inOrder(callback, node) {
+    if (node === null) {
+      return null;
+    }
+    this.inOrder(callback, node.left);
+    callback(node);
+    this.inOrder(callback, node.right);
+  }
+
+  preOrderTraversal(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("PLease enter a function");
+    }
+    this.preOrder(callback, this.root);
+  }
+
+  preOrder(callback, node) {
+    if (node === null) {
+      return null;
+    }
+    callback(node);
+    this.preOrder(callback, node.left);
+    this.preOrder(callback, node.right);
+  }
+
+  postOrderTraversal(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("PLease enter a function");
+    }
+    this.postOrder(callback, this.root);
+  }
+
+  postOrder(callback, node) {
+    if (node === null) {
+      return null;
+    }
+
+    this.postOrder(callback, node.left);
+    this.postOrder(callback, node.right);
+    callback(node);
+  }
+```
