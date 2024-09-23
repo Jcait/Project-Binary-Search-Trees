@@ -279,3 +279,33 @@ Working on the Binary Search Tree has been great in understanding how recursive 
     }
   }
 ```
+
+### Level order Traversal
+
+This involved assigning the items to an array as a first in, first out, since we're only dealing with the first index each time we don't need to iterate over the array. What caught me off guard was thinking `callback()` has to be an actual function but the biggest lesson from here was it has to be abstract so any function applied can be used in the level order traversl
+
+```js
+  levelOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("PLease enter a function");
+    }
+    let queue = new Array(this.root);
+    while (queue.length > 0) {
+      if (queue[0] === null) {
+        return "end of queue";
+      }
+      callback(queue[0]);
+      if (queue[0].left && queue[0].right) {
+        queue.push(queue[0].left);
+        queue.push(queue[0].right);
+      } else if (!queue[0].left) {
+        queue.push(queue[0].right);
+      } else if (!queue[0].right) {
+        queue.push(queue[0].left);
+      } else {
+        queue.shift();
+      }
+      queue.shift();
+    }
+  }
+```

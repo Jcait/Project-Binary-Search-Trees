@@ -119,15 +119,31 @@ class BinaryTree {
   }
 
   levelOrder(callback) {
-    let queue = [];
-    queue.push(this.root, this.root);
-    return queue;
+    if (typeof callback !== "function") {
+      throw new Error("PLease enter a function");
+    }
+    let queue = new Array(this.root);
+    while (queue.length > 0) {
+      if (queue[0] === null) {
+        return "end of queue";
+      }
+      callback(queue[0]);
+      if (queue[0].left && queue[0].right) {
+        queue.push(queue[0].left);
+        queue.push(queue[0].right);
+      } else if (!queue[0].left) {
+        queue.push(queue[0].right);
+      } else if (!queue[0].right) {
+        queue.push(queue[0].left);
+      } else {
+        queue.shift();
+      }
+      queue.shift();
+    }
   }
 
   printNode(node) {
-    node.forEach((x) => {
-      return x;
-    });
+    console.log(node);
   }
 }
 
