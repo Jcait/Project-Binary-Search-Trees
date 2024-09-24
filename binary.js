@@ -149,7 +149,7 @@ class BinaryTree {
     if (typeof callback !== "function") {
       throw new Error("PLease enter a function");
     }
-    this.inOrder(callback, this.root);
+    return this.inOrder(callback, this.root);
   }
 
   inOrder(callback, node) {
@@ -165,7 +165,7 @@ class BinaryTree {
     if (typeof callback !== "function") {
       throw new Error("PLease enter a function");
     }
-    this.preOrder(callback, this.root);
+    return this.preOrder(callback, this.root);
   }
 
   preOrder(callback, node) {
@@ -181,7 +181,7 @@ class BinaryTree {
     if (typeof callback !== "function") {
       throw new Error("PLease enter a function");
     }
-    this.postOrder(callback, this.root);
+    return this.postOrder(callback, this.root);
   }
 
   postOrder(callback, node) {
@@ -191,6 +191,7 @@ class BinaryTree {
 
     this.postOrder(callback, node.left);
     this.postOrder(callback, node.right);
+    // console.log(`Callback: ${callback(node)}`);
     callback(node);
   }
 
@@ -237,8 +238,23 @@ class BinaryTree {
     }
   }
 
-  test(root) {
-    return root;
+  rebalance() {
+    // console.log(this.addArr(arr, this.root));
+    if (this.isBalanced(this.root)) {
+      return "The tree is balanced";
+    } else {
+      let arr = this.addArr(new Array(), this.root);
+      this.root = this.buildTree(arr);
+    }
+  }
+  addArr(arr, root) {
+    if (root === null) {
+      return null;
+    }
+    this.addArr(arr, root.left);
+    this.addArr(arr, root.right);
+    arr.push(root.value);
+    return arr;
   }
 }
 
@@ -255,8 +271,15 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+const randomArray = () => {
+  let arr = [];
+  while (arr.length < 15) {
+    arr.push(Math.floor(Math.random() * 100));
+  }
+  return arr;
+};
+
 testArr = [7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 30, 34, 32, 31];
 
-test = new BinaryTree(testArr);
-test.height(test.root);
-test.isBalanced();
+test = new BinaryTree(randomArray());
+prettyPrint(test.root);

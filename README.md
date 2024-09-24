@@ -396,3 +396,30 @@ Find Height is another recusive function that goes as low as it can in a tree th
     }
   }
 ```
+
+### Rebalance
+
+`rebalance` adds the values to an array which we'll pass into the classes own route, with how the functions work they'll recursively balance each other out
+
+```js
+  rebalance() {
+    // console.log(this.addArr(arr, this.root));
+    if (this.isBalanced(this.root)) {
+      return "The tree is balanced";
+    } else {
+      let arr = this.addArr(new Array(), this.root);
+      this.root = this.buildTree(arr);
+    }
+  }
+  addArr(arr, root) {
+    if (root === null) {
+      return null;
+    }
+    this.addArr(arr, root.left);
+    this.addArr(arr, root.right);
+    arr.push(root.value);
+    return arr;
+  }
+
+
+```
