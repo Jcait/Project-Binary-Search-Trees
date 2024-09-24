@@ -9,6 +9,9 @@ class BinaryTreeNode {
 class BinaryTree {
   constructor(arr) {
     this.root = this.buildTree(arr);
+    this.test = function () {
+      return;
+    };
   }
 
   buildTree(arr) {
@@ -203,8 +206,39 @@ class BinaryTree {
     const rDeph = this.findHeight(node.right);
     return Math.max(lDeph, rDeph) + 1;
   }
+
+  deph(node) {
+    return this.findDeph(this.root, node, 0);
+  }
+
+  findDeph(root, node, count) {
+    if (root === node) {
+      console.log("match");
+      return count;
+    } else if (root === null) {
+      return null;
+    }
+
+    let left = this.findDeph(root.left, node, count + 1);
+    let right = this.findDeph(root.right, node, count + 1);
+    return Math.max(left, right);
+  }
   printNode(node) {
     console.log(node);
+  }
+
+  isBalanced(root = this.root) {
+    const left = this.height(root.left);
+    const right = this.height(root.right);
+    if (Math.max(left, right) - Math.min(left, right) <= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  test(root) {
+    return root;
   }
 }
 
@@ -225,3 +259,4 @@ testArr = [7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 30, 34, 32, 31];
 
 test = new BinaryTree(testArr);
 test.height(test.root);
+test.isBalanced();

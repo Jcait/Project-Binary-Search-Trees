@@ -379,3 +379,20 @@ Find Height is another recusive function that goes as low as it can in a tree th
     return Math.max(lDeph, rDeph) + 1;
   }
 ```
+
+### isBalanced
+
+`height` already goes from the declared root, we can just set the root to be the left and right of the nodes and compare the height from there to see if it's balanced
+
+```js
+
+  isBalanced(root = this.root) {
+    const left = this.height(root.left);
+    const right = this.height(root.right);
+    if (Math.max(left, right) - Math.min(left, right) <= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+```
